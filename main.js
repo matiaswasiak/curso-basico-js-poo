@@ -26,3 +26,21 @@ Person.prototype.addHobbie = function (hobbie) {
 };
 
 const matias = new Person("Matias", 22, ["reading", "videogames"]);
+
+// Prototypes with the class syntax
+class Person2 {
+  constructor({ name, age, hobbies = [] }) {
+    this.name = name;
+    this.age = age;
+    this.hobbies = hobbies;
+  }
+
+  addHobbie(hobbie) {
+    this.hobbies.push(hobbie);
+  }
+}
+
+const agustin = new Person2({
+  name: "Agustin",
+  age: 22,
+});

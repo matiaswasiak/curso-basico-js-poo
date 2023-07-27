@@ -8,7 +8,7 @@ function videoStop(id) {
   console.log("Pausamos la url " + urlSecreta);
 }
 
-export class PlatziClass {
+class PlatziClass {
   constructor({ name, videoID }) {
     this.name = name;
     this.videoID = videoID;
@@ -24,9 +24,11 @@ export class PlatziClass {
 }
 
 class Course {
-  constructor({ name, classes = [] }) {
+  constructor({ name, classes = [], isFree = false, lang = "spanish" }) {
     this._name = name;
     this.classes = classes;
+    this.isFree = isFree;
+    this.lang = lang;
   }
 
   get name() {
@@ -44,6 +46,7 @@ class Course {
 
 const cursoProgramacionBasica = new Course({
   name: "Curso Gratis de Programación Básica",
+  isFree: true,
 });
 
 const cursoDefinitivoHTMLCSS = new Course({
@@ -52,6 +55,7 @@ const cursoDefinitivoHTMLCSS = new Course({
 
 const cursoPracticoHTMLCSS = new Course({
   name: "Curso Practico de HTML y CSS",
+  lang: "english",
 });
 
 class LearningPath {
@@ -115,10 +119,60 @@ class Student {
   }
 }
 
-const sumi = new Student({
+class FreeStudent extends Student {
+  constructor(props) {
+    super(props);
+  }
+
+  approveCourse(newCourse) {
+    if (newCourse.isFree) {
+      this.approvedCourses.push(newCourse);
+    } else {
+      console.warn(
+        "Lo sentimos, " + this.name + ", solo puedes tomar cursos abiertos"
+      );
+    }
+  }
+}
+
+class BasicStudent extends Student {
+  constructor(props) {
+    super(props);
+  }
+
+  approveCourse(newCourse) {
+    if (newCourse.lang !== "english") {
+      this.approvedCourses.push(newCourse);
+    } else {
+      console.warn(
+        "Lo sentimos, " + this.name + ", no puedes tomar cursos en inglés"
+      );
+    }
+  }
+}
+
+class ExpertStudent extends Student {
+  constructor(props) {
+    super(props);
+  }
+
+  approveCourse(newCourse) {
+    this.approvedCourses.push(newCourse);
+  }
+}
+
+const sumi = new FreeStudent({
   name: "Sumi",
   username: "pachi",
   email: "pachi@gmail.com",
   twitter: "@pachi",
   learningPaths: [escuelaWeb, escuelaVideojuegos],
+});
+
+const mati = new ExpertStudent({
+  name: "Matias",
+  username: "mati",
+  email: "matiaswasiak@gmail.com",
+  instagram: "@matiaswasiak_",
+  learningPaths: [escuelaWeb, escuelaData],
 });

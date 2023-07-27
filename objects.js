@@ -1,7 +1,19 @@
 class Course {
   constructor({ name, classes = [] }) {
-    this.name = name;
+    this._name = name;
     this.classes = classes;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(newName) {
+    if (newName === "Curso Malito de Programación Basica") {
+      console.error("Web... no");
+    } else {
+      this._name = newName;
+    }
   }
 }
 

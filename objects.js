@@ -1,3 +1,22 @@
+class Course {
+  constructor({ name, classes = [] }) {
+    this.name = name;
+    this.classes = classes;
+  }
+}
+
+const cursoProgramacionBasica = new Course({
+  name: "Curso Gratis de Programación Básica",
+});
+
+const cursoDefinitivoHTMLCSS = new Course({
+  name: "Curso Definitivo de HTML y CSS",
+});
+
+const cursoPracticoHTMLCSS = new Course({
+  name: "Curso Practico de HTML y CSS",
+});
+
 class LearningPath {
   constructor({ name, courses = [] }) {
     this.name = name;
@@ -8,8 +27,9 @@ class LearningPath {
 const escuelaWeb = new LearningPath({
   name: "Escuela de Desarrollo Web",
   courses: [
-    "Curso Definitivo de HTML y CSS",
-    "Curso Practico de HTML y CSS",
+    cursoProgramacionBasica,
+    cursoDefinitivoHTMLCSS,
+    cursoPracticoHTMLCSS,
     "Curso de Responsive Design",
   ],
 });
@@ -17,6 +37,7 @@ const escuelaWeb = new LearningPath({
 const escuelaData = new LearningPath({
   name: "Escuela de Data Science",
   courses: [
+    cursoProgramacionBasica,
     "Curso Básico de Python",
     "Curso de Introducción a la Terminal y Línea de Comandos",
     "Curso de Git y Github Avanzado",
@@ -26,6 +47,7 @@ const escuelaData = new LearningPath({
 const escuelaVideojuegos = new LearningPath({
   name: "Escuela de Videojuegos",
   courses: [
+    cursoProgramacionBasica,
     "Curso Introducción a la Producción de Videojuegos",
     "Curso Unreal Engine",
     "Curso de Unity 3D",
